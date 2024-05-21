@@ -5,7 +5,7 @@ import os
 
 app = FastAPI()
 
-@app.get("/")
+@app.get("/docker")
 def read_root():
     return {"Hello": "World"}
 
