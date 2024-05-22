@@ -10,7 +10,7 @@ ENV PINECONE_API_KEY=$VAR2
 ENV GRAPHQL_API_ID=$VAR3
 
 # install fastapi and uvicorn
-RUN pip install fastapi uvicorn
+RUN pip install fastapi uvicorn boto3 requests
 
 WORKDIR /app
 ADD . .
