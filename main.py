@@ -51,6 +51,6 @@ def read_root(request: Request):
         # sleep for 2 seconds
         asyncio.sleep(2)
 
-    return {"Hello": "shorse shorse", "openai_api_key": openai_api_key, "pinecone_api_key": pinecone_api_key}
+    return {"Hello": "shorse shorse very shorse", "openai_api_key": openai_api_key, "pinecone_api_key": pinecone_api_key, "graphql_api_id": graphql_api_id}
 
 uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
