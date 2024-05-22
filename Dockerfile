@@ -3,9 +3,11 @@ COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.7.1 /lambda-adapter /opt
 
 ARG VAR1
 ARG VAR2
+ARG VAR3
 
 ENV OPENAI_API_KEY=$VAR1
 ENV PINECONE_API_KEY=$VAR2
+ENV GRAPHQL_API_ID=$VAR3
 
 # install fastapi and uvicorn
 RUN pip install fastapi uvicorn
