@@ -3,8 +3,31 @@ import boto3
 import asyncio
 import requests
 import json
+import time
 
 def lambda_handler(event, context):
+
+    graphql_url = event["graphql_url"]
+    authorization = event["auth"]
+
+    query = "mutation ($input: CreateTodoInput!) {\n  createTodo(input: $input) {\n    id\n    content\n    createdAt\n    updatedAt\n  }\n}\n"
+
+    time.sleep(20)
+
+    for i in range(10):
+        variables = {"input": {"content": f"Hello, World! {i}"}}
+        payload = {"query": query, "variables": variables}
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': authorization
+        }
+
+        response = requests.post(graphql_url, headers=headers, data=json.dumps(payload))
+
+        # sleep for 2 seconds
+        time.sleep(3)
+
     return {
         "statusCode": 200,
         "body": json.dumps(event)
