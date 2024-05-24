@@ -20,6 +20,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+async def long_running_task():
+    await asyncio.sleep(100)
+    return "done"
+
+@app.get("/long-running-task")
+async def long_running_task_handler():
+    # run the task and return a response before it finishes
+    asyncio.create_task(long_running_task())
+    return {"status": "started"}
 
 @app.get("/docker")
 def read_root(request: Request):
